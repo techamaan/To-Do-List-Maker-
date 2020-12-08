@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style>
+		.c1
+		{
+			padding-left: 400px;
+			padding-top: 100px;
+		}
+		.c2
+		{
+			padding-left: 400px;
+			padding-top: 50px;
+		}
+		.c3
+		{
+			
+			background-color: green;
+			font-size: 20px;
+			margin-left: 10px;
+		}
+		.c4{
+			font-size: 30px;
+			margin-right: 8px;
+		}
+		.c5{
+			height: 30px;
+		}
+		.container-fluid
+		{
+			background-color: skyblue;
+			height: 550px;
+			width: auto;
+		}
+		.f1
+		{
+			text-align: center;
+			background-color: grey;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+	</style>
+	<title>To Do list</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+
+     <script>
+     	
+     	$(document).ready(
+    function(){
+        $('#button1').click(
+            function(){
+            	var a=$('#text1').val();
+
+
+                var chk= $("<div class='d'>"+' <input type="checkbox" name="chk '+a+'" id="check"/><label class="li">'+a+' </label> <input type="text" class="text2"/> '+'<input type="button" class="edit" value="edit" />'+'<input type="button" value="delete" class="delete" />'+"<br />");
+                $("#h1").append(chk);
+
+                $('.edit').on('click' , function(){
+                var b=$(this).parent().text();
+                $(this).parent('.d').children('.text2').val(b);
+                $(this).prev().focus();
+                console.log(b);
+
+                });
+                $('.li').click(function()
+                {
+                	var c=$(this).parent('.d').children('.text2').val();
+                	$(this).parent('.d').children('.li').text(c);
+                	console.log(c);
+                })
+
+                $('.delete').on('click' , function(){
+
+                	$(this).parent().remove();
+                
+
+                });
+                $("#text1").val("");
+            });
+        
+
+        $("#h1").on('click' ,'#check' , function(){
+     			$(this).parent().appendTo("#h2");
+
+     		});
+
+
+         }); 
+
+     		
+     </script>
+</head>
+<body>
+	<div class="jumbotron text-center f1"><h1>To Do List</h1></div>
+	<div class="container-fluid">
+	<div class="text-center c1">
+	 <label for="Tdlist" class="c4">Add Task:</label>
+  <input type="text" id="text1" class="c5">
+  <button type="button" id="button1" class="c3">Add Task</button>
+</div>
+  <div class="text-center c2">
+  <h2 id="h1">ToDo :</h2>
+  <h2 id="h2">Completed Task :</h2>
+  <div id="box"></div>
+</div>
+</div>
+</body>
+</html>
+
+
